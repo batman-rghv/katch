@@ -10,42 +10,74 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="index.html"><img src="assets/images/logo.png" alt="Katch Real Estate"></a>
+                <img src="assets/images/logo.png" alt="Katch Real Estate">
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="history.html">History</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <!-- Contact Form Section -->
         <section class="contact-form">
             <h2>Contact Us</h2>
-            <p>We'd love to hear from you. Fill out the form below and we'll get back to you shortly.</p>
-            
-            <form action="https://formsubmit.co/work.raghav.mb@gmail.com" method="POST">
-                <input type="hidden" name="_next" value="thankyou.html">
-                <input type="hidden" name="_captcha" value="false">
-                
-                <label for="name">Your Name (required)</label>
-                <input type="text" id="name" name="name" required>
+            <form action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+                <input type="text" name="name" placeholder="Your Name (required)" required>
+                <input type="email" name="email" placeholder="Your Email (required)" required>
+                <input type="text" name="subject" placeholder="Subject">
+                <textarea name="message" placeholder="Your Message"></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
 
-                <label for="email">Your Email (required)</label>
-                <input type="email" id="email" name="email" required>
+        <!-- Employees Section -->
+        <section class="employees">
+            <h2>Meet Our Team</h2>
+            <ul>
+                <li>
+                    <img src="assets/images/employees/employee1.jpg" alt="John Doe">
+                    <div class="employee-info">
+                        <h3>John Doe</h3>
+                        <p>Languages: English, Arabic</p>
+                        <p>Experience: 8 years</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="assets/images/employees/employee2.jpg" alt="Jane Smith">
+                    <div class="employee-info">
+                        <h3>Jane Smith</h3>
+                        <p>Languages: English, Russian</p>
+                        <p>Experience: 6 years</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="assets/images/employees/employee3.jpg" alt="Carlos Gomez">
+                    <div class="employee-info">
+                        <h3>Carlos Gomez</h3>
+                        <p>Languages: Spanish, English</p>
+                        <p>Experience: 10 years</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject">
-
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-
-                <button type="submit">Send</button>
+        <!-- Careers Section -->
+        <section class="careers">
+            <h2>Join Our Team</h2>
+            <form action="https://formsubmit.co/YOUR_EMAIL" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="position" placeholder="Desired Position" required>
+                <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                <button type="submit">Apply Now</button>
             </form>
         </section>
     </main>
 
-    <script src="js/script.js"></script>
+    <footer>
+        <p>&copy; 2025 Katch Real Estate. All rights reserved.</p>
+    </footer>
 </body>
 </html>
