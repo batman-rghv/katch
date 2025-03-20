@@ -8,29 +8,57 @@
 </head>
 <body>
     <header>
-        <nav>
+        <!-- Mobile View: New Top Bar with Kebab Menu -->
+        <div class="top-bar">
             <div class="logo">
                 <img src="assets/images/logo.png" alt="Katch Real Estate">
             </div>
-            <ul class="nav-links">
-                <li><a href="history.html">History</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="#" id="whatsapp-link"><img src="assets/icons/whatsapp.jpg" alt="WhatsApp" class="social-icon"></a></li>
-                <li><a href="#" id="instagram-link"><img src="assets/icons/instagram.jpg" alt="Instagram" class="social-icon"></a></li>
-                <li><a href="#" id="facebook-link"><img src="assets/icons/facebook.jpg" alt="Facebook" class="social-icon"></a></li>
-                <li>
-                    <select id="language-select">
-                        <option value="en">English</option>
-                        <option value="hi">Hindi</option>
-                        <option value="ru">Russian</option>
-                        <option value="de">German</option>
-                        <option value="ar">Arabic</option>
-                    </select>
-                </li>
-            </ul>
-        </nav>
+            <img src="assets/icons/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
+            <div class="kebab-menu">☰</div>
+        </div>
+
+        <!-- Mobile View: Hidden Kebab Menu -->
+        <div class="menu-content">
+            <a href="history.html">History</a>
+            <a href="contact.html">Contact</a>
+            <div class="social-icons">
+                <div><img src="assets/icons/instagram.png"> Instagram</div>
+                <div><img src="assets/icons/facebook.png"> Facebook</div>
+            </div>
+            <div class="language-toggle">Languages ▼</div>
+            <div class="language-dropdown">
+                <a href="#">English</a>
+                <a href="#">French</a>
+                <a href="#">Arabic</a>
+            </div>
+        </div>
+
+        <!-- Wide Screen View: Old Top Bar -->
+        <div class="desktop-top-bar">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Katch Real Estate">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#" id="whatsapp-link"><img src="assets/icons/whatsapp.png" alt="WhatsApp" class="social-icon"></a></li>
+                    <li><a href="#" id="instagram-link"><img src="assets/icons/instagram.png" alt="Instagram" class="social-icon"></a></li>
+                    <li><a href="#" id="facebook-link"><img src="assets/icons/facebook.png" alt="Facebook" class="social-icon"></a></li>
+                    <li>
+                        <select id="language-select">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ru">Russian</option>
+                            <option value="de">German</option>
+                            <option value="ar">Arabic</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    
+
     <main>
         <!-- Company Info -->
         <section class="company-info">
@@ -40,9 +68,7 @@
 
         <!-- Image Gallery -->
         <section class="image-gallery">
-            <img src="assets/images/home1.png" alt="Image 1">
-            <img src="assets/images/home2.jpg" alt="Image 2">
-            <img src="assets/images/home3.jpg" alt="Image 3">
+            <img id="slideshow-image" src="assets/images/home1.png" alt="Slideshow Image">
         </section>
 
         <!-- Partners -->
@@ -58,7 +84,6 @@
             </div>
         </section>
 
-        
         <!-- Our Communities -->
         <section class="our-communities">
             <h2>Our Communities</h2>
@@ -102,12 +127,37 @@
                 </div>
             </div>
         </section>
-
-        
     </main>
 
-    <script src="js/script.js"></script>
-    <script src="js/languages.js"></script>
+    <script>
+    // Toggle menu visibility on click
+    document.querySelector(".kebab-menu").addEventListener("click", function () {
+        document.querySelector(".menu-content").classList.toggle("active");
+    });
+
+    // Mobile Slideshow
+    const images = [
+        "assets/images/home1.png",
+        "assets/images/home2.png",
+        "assets/images/home3.png"
+    ];
+    
+    let currentIndex = 0;
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById("slideshow-image").src = images[currentIndex];
+    }
+
+    // Only activate the slideshow in mobile view
+    function startSlideshow() {
+        if (window.innerWidth <= 768) {
+            setInterval(changeImage, 10000); // Change every 10 seconds
+        }
+    }
+
+    window.addEventListener("load", startSlideshow);
+    window.addEventListener("resize", startSlideshow);
+    </script>
 
     <footer>
         <p>&copy; 2025 Katch Real Estate. All rights reserved.</p>

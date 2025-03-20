@@ -4,11 +4,21 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("instagram-link").href = "https://www.instagram.com/your-profile";
     document.getElementById("facebook-link").href = "https://www.facebook.com/your-page";
 
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector(".menu-icon");
+    const menu = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+        menu.classList.toggle("active");
+    });
+
     // Language Selector
     const languageSelect = document.getElementById("language-select");
-    languageSelect.addEventListener("change", function () {
-        loadLanguage(this.value);
-    });
+    if (languageSelect) {
+        languageSelect.addEventListener("change", function () {
+            loadLanguage(this.value);
+        });
+    }
 
     function loadLanguage(language) {
         fetch(`languages/${language}.json`)
@@ -21,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Partner Logos Scroll
     const partnerTrack = document.querySelector(".partners-track");
-    partnerTrack.style.animationDuration = "30s"; // Slow down the scrolling
+    if (partnerTrack) {
+        partnerTrack.style.animationDuration = "30s"; // Slow down the scrolling
+    }
 
     // Full-Screen Rotating Home Images
     const images = document.querySelectorAll(".image-gallery img");
@@ -33,6 +45,35 @@ document.addEventListener("DOMContentLoaded", function () {
         currentIndex = (currentIndex + 1) % images.length;
     }
 
-    setInterval(rotateImages, 10000); // Change image every 10 seconds
-    rotateImages(); // Initialize first image display
+    if (images.length > 0) {
+        setInterval(rotateImages, 10000); // Change image every 10 seconds
+        rotateImages(); // Initialize first image display
+    }
+
+    // File Upload Functionality
+    const fileInput = document.getElementById("resume");
+    const fileInfo = document.getElementById("file-info");
+    const removeFileButton = document.getElementById("remove-file");
+
+    if (fileInput) {
+        fileInput.addEventListener("change", function () {
+            if (fileInput.files.length > 0) {
+                let fileName = fileInput.files[0].name;
+                let fileType = fileInput.files[0].type || "Unknown format";
+                fileInfo.innerText = `Uploaded: ${fileName} (${fileType})`;
+                removeFileButton.style.display = "inline-block";
+            } else {
+                fileInfo.innerText = "";
+                removeFileButton.style.display = "none";
+            }
+        });
+    }
+
+    if (removeFileButton) {
+        removeFileButton.addEventListener("click", function () {
+            fileInput.value = "";
+            fileInfo.innerText = "File removed!";
+            removeFileButton.style.display = "none";
+        });
+    }
 });
